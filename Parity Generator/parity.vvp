@@ -1,0 +1,95 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01250FF8 .scope module, "parity" "parity" 2 1;
+ .timescale 0 0;
+P_01254844 .param/l "even" 2 4, +C4<0>;
+P_01254858 .param/l "odd" 2 4, +C4<01>;
+v01257678_0 .net "clk", 0 0, C4<z>; 0 drivers
+v0125E720_0 .var "even_odd", 0 0;
+v0125E778_0 .net "x", 0 0, C4<z>; 0 drivers
+v0125E7D0_0 .var "z", 0 0;
+E_01254578 .event posedge, v01257678_0;
+    .scope S_01250FF8;
+T_0 ;
+    %wait E_01254578;
+    %load/v 8, v0125E720_0, 1;
+    %cmpi/u 8, 0, 1;
+    %jmp/1 T_0.0, 6;
+    %cmpi/u 8, 1, 1;
+    %jmp/1 T_0.1, 6;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0125E720_0, 0, 0;
+    %jmp T_0.3;
+T_0.0 ;
+    %load/v 8, v0125E778_0, 1;
+    %jmp/0  T_0.4, 8;
+    %mov 9, 1, 1;
+    %jmp/1  T_0.6, 8;
+T_0.4 ; End of true expr.
+    %jmp/0  T_0.5, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_0.6;
+T_0.5 ;
+    %mov 9, 0, 1; Return false value
+T_0.6 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0125E7D0_0, 0, 9;
+    %load/v 8, v0125E778_0, 1;
+    %jmp/0  T_0.7, 8;
+    %movi 9, 1, 2;
+    %jmp/1  T_0.9, 8;
+T_0.7 ; End of true expr.
+    %jmp/0  T_0.8, 8;
+ ; End of false expr.
+    %blend  9, 0, 2; Condition unknown.
+    %jmp  T_0.9;
+T_0.8 ;
+    %mov 9, 0, 2; Return false value
+T_0.9 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0125E720_0, 0, 9;
+    %jmp T_0.3;
+T_0.1 ;
+    %load/v 8, v0125E778_0, 1;
+    %jmp/0  T_0.10, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_0.12, 8;
+T_0.10 ; End of true expr.
+    %jmp/0  T_0.11, 8;
+ ; End of false expr.
+    %blend  9, 1, 1; Condition unknown.
+    %jmp  T_0.12;
+T_0.11 ;
+    %mov 9, 1, 1; Return false value
+T_0.12 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0125E7D0_0, 0, 9;
+    %load/v 8, v0125E778_0, 1;
+    %jmp/0  T_0.13, 8;
+    %mov 9, 0, 2;
+    %jmp/1  T_0.15, 8;
+T_0.13 ; End of true expr.
+    %movi 11, 1, 2;
+    %jmp/0  T_0.14, 8;
+ ; End of false expr.
+    %blend  9, 11, 2; Condition unknown.
+    %jmp  T_0.15;
+T_0.14 ;
+    %mov 9, 11, 2; Return false value
+T_0.15 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0125E720_0, 0, 9;
+    %jmp T_0.3;
+T_0.3 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "parity_gen.v";
