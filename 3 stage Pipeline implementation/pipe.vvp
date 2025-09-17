@@ -1,0 +1,72 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01208050 .scope module, "pipeline" "pipeline" 2 1;
+ .timescale 0 0;
+P_010D24FC .param/l "n" 2 2, +C4<01010>;
+v010D3240_0 .net "a", 9 0, C4<zzzzzzzzzz>; 0 drivers
+v010D3398_0 .net "b", 9 0, C4<zzzzzzzzzz>; 0 drivers
+v012045D0_0 .net "c", 9 0, C4<zzzzzzzzzz>; 0 drivers
+v01204628_0 .net "clk", 0 0, C4<z>; 0 drivers
+v01204680_0 .net "d", 9 0, C4<zzzzzzzzzz>; 0 drivers
+v0120ED20_0 .net "f", 9 0, v0120EF30_0; 1 drivers
+v0120ED78_0 .var "l12_d", 9 0;
+v0120EDD0_0 .var "l12_x1", 9 0;
+v0120EE28_0 .var "l12_x2", 9 0;
+v0120EE80_0 .var "l23_d", 9 0;
+v0120EED8_0 .var "l23_x3", 9 0;
+v0120EF30_0 .var "l34_f", 9 0;
+E_010D25D8 .event posedge, v01204628_0;
+    .scope S_01208050;
+T_0 ;
+    %wait E_010D25D8;
+    %delay 4, 0;
+    %load/v 8, v010D3240_0, 10;
+    %load/v 18, v010D3398_0, 10;
+    %add 8, 18, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120EDD0_0, 0, 8;
+    %delay 4, 0;
+    %load/v 8, v012045D0_0, 10;
+    %load/v 18, v01204680_0, 10;
+    %sub 8, 18, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120EE28_0, 0, 8;
+    %load/v 8, v01204680_0, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120ED78_0, 0, 8;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_01208050;
+T_1 ;
+    %wait E_010D25D8;
+    %delay 4, 0;
+    %load/v 8, v0120EDD0_0, 10;
+    %load/v 18, v0120EE28_0, 10;
+    %add 8, 18, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120EED8_0, 0, 8;
+    %load/v 8, v0120ED78_0, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120EE80_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_01208050;
+T_2 ;
+    %wait E_010D25D8;
+    %delay 6, 0;
+    %load/v 8, v0120EED8_0, 10;
+    %load/v 18, v0120EE80_0, 10;
+    %mul 8, 18, 10;
+    %ix/load 0, 10, 0;
+    %assign/v0 v0120EF30_0, 0, 8;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "code.v";
