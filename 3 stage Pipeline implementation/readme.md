@@ -61,7 +61,9 @@ The pipeline computes:
 - Multiple input sets are applied to test pipelined operation.  
 - Simulation output is dumped to **pipe.vcd** for waveform analysis.  
 
-Sample output (console log):  
+output:
+<img width="1487" height="932" alt="Screenshot 2025-09-17 234854" src="https://github.com/user-attachments/assets/dee94604-5559-4312-a114-3e6eda9a95a0" />
+  
 
 ---
 
